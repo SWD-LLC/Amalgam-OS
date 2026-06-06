@@ -1,0 +1,168 @@
+table_name,column_name,description,example_source,nullable
+organizations,organization_id,"Product ownership, legal attribution, and repository-level metadata.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,organization_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,product_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,internal_codename,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,positioning,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,license,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,repo_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,owner_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,created_at,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+organizations,status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,creator_id,Creator accounts and onboarding state.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,organization_id,Creator accounts and onboarding state.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,creator_handle,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,display_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,creator_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,primary_vertical,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,creator_stage,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,onboarding_status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,workspace_mode,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,trust_tier,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,monetization_probation_start,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,monetization_probation_end,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,payout_enabled,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+creators,primary_goal,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,platform_account_id,"Connected external platform accounts across Twitch, YouTube Live, Kick, and TikTok Live.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,creator_id,"Connected external platform accounts across Twitch, YouTube Live, Kick, and TikTok Live.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,platform,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,platform_handle,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,connected,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,follower_count,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,avg_concurrent_viewers_30d,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,subscriber_count,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,sync_status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+platform_accounts,last_synced_at,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,stream_id,"Stream lifecycle records with health, mode, and reliability settings.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,creator_id,"Stream lifecycle records with health, mode, and reliability settings.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,title,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,category,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,lifecycle_stage,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,started_at,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,duration_minutes,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,target_platforms,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,workspace_mode,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,safe_mode_enabled,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,shadow_mode_enabled,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,health_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,tier_label,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,primary_growth_driver,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+streams,primary_risk,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,signal_id,Canonical 7-Signal algorithmic health monitor configuration.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,signal_label,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,max_value,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,benchmark_direction,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,critical_threshold_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,traction_threshold_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,on_fire_threshold_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,algorithm_lock_threshold_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,action_1,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,action_2,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+signal_definitions,action_3,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,metric_id,Per-stream metric observations and normalized signal scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,stream_id,Per-stream metric observations and normalized signal scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,signal_id,Per-stream metric observations and normalized signal scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,raw_value,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,normalized_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,trend_7d,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,weakest_flag,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,strongest_flag,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,recommended_action,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+stream_signal_metrics,captured_at,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,bestie_action_id,"Optional Bestie panel suggestions, triggers, and accepted actions.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,stream_id,"Optional Bestie panel suggestions, triggers, and accepted actions.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,creator_id,"Optional Bestie panel suggestions, triggers, and accepted actions.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,action_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,tone,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,trigger_source,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,suggestion,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,priority,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,creator_accepted,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,impact_metric,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,estimated_minutes_saved,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+bestie_actions,status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,clip_id,"Repurpose engine queue for TikTok, Reels, Shorts, and other short-form distribution.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,stream_id,"Repurpose engine queue for TikTok, Reels, Shorts, and other short-form distribution.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,creator_id,"Repurpose engine queue for TikTok, Reels, Shorts, and other short-form distribution.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,source_timestamp,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,clip_hook,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,destination_platform,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,duration_seconds,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,clip_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,projected_views,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+clip_pipeline,actual_views,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",yes
+clip_pipeline,repurpose_priority,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,relationship_id,"Creator CRM for raid partners, guests, and collaborator follow-up.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,creator_id,"Creator CRM for raid partners, guests, and collaborator follow-up.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,partner_handle,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,platform,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,compatibility_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,last_raid_date,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",yes
+raid_crm,raids_sent,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,raids_received,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,follow_up_date,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",yes
+raid_crm,relationship_status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+raid_crm,next_action,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,monetization_event_id,"Revenue, escrow, fraud, and payout-status events.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,creator_id,"Revenue, escrow, fraud, and payout-status events.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,stream_id,"Revenue, escrow, fraud, and payout-status events.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,source_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,gross_amount_usd,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,platform_fee_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,trust_flag,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,escrow_required,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,payout_status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,risk_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+monetization_events,notes,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",yes
+failover_events,failover_event_id,Reliability incidents and recovery actions.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,stream_id,Reliability incidents and recovery actions.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,module,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,failure_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,detected_by,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,recovery_action,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,downtime_ms,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,viewer_retention_delta_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,resolved,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+failover_events,severity,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,forecast_id,Predictive Growth Intel forecast outputs with confidence scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,creator_id,Predictive Growth Intel forecast outputs with confidence scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,horizon_days,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,model_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,projected_avg_viewers,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,projected_new_followers,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,projected_engagement_rate_pct,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,estimated_revenue_usd,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,confidence_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,primary_driver,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+growth_forecasts,recommended_action_id,Predictive Growth Intel forecast outputs with confidence scores.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",yes
+feature_modules,module_id,"Product roadmap module matrix by phase, priority, impact, and complexity.","Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,pillar,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,module_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,phase,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,status,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,impact_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,complexity_score,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,strategic_priority,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,owner_team,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+feature_modules,success_metric,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,feature_category,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,amalgam,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,twitch,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,youtube_live,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,kick,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,tiktok_live,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+competitor_matrix,amalgam_moat,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,device_target_id,Supported platform/device roadmap.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,platform,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,phase,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,role,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,supported,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,capture_path,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+device_targets,fallback_path,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,surface_id,UX surfaces and product jobs-to-be-done.,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,surface_name,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,user_type,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,primary_job,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,mvp_scope,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
+product_surfaces,future_scope,,"Derived from Amalgam Creator OS, Growth Intel, 7-Signal, Bestie, reliability, and roadmap documents",no
