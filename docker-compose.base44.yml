@@ -18,7 +18,8 @@ services:
         # The repository ships no lockfile, so install without generating one and keep
         # the checked-out tree clean.
         CI=true npm install --no-audit --no-fund --no-package-lock
-        exec npm run dev -- --host 0.0.0.0 --port 3000
+        # Run Vite directly so Docker signals reach it without npm treating shutdown as an error.
+        exec node node_modules/vite/bin/vite.js --host 0.0.0.0 --port 3000
     ports:
       - "3000:3000"
     volumes:

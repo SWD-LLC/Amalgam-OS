@@ -20,6 +20,10 @@ Everything runs in one service (`web`), a `node:22-slim` container with the repo
 
 ## Non-obvious things
 
+- Compose executes Vite directly with Node after dependency installation. An `npm run dev`
+  wrapper reports normal Docker SIGTERM shutdowns as `npm error`; direct execution avoids
+  that misleading noise and delivers signals to the actual dev server.
+
 - **There is no lockfile in the repo**, so the startup command uses
   `npm install --no-package-lock` to avoid generating an untracked `package-lock.json` in the
   bind-mounted tree.
