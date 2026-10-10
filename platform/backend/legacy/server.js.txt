@@ -1,0 +1,321 @@
+/*
+ * Amalgam Backend Services
+ *
+ * This file defines a very simple HTTP API that backs the Amalgam Creator Studio
+ * application. It uses only Node.js builtin modules (http, fs, url, path) so
+ * it can run in environments where no third‑party packages are available.
+ *
+ * The goal of this backend is not to provide a production‑ready service but
+ * rather to serve as a starting point. It demonstrates how to persist and
+ * retrieve data for users, streaming sessions and monetization events, and
+ * outlines routes where integrations like Google SSO and PayPal should live.
+ *
+ * To run the server:
+ *   node backend/server.js
+ * It will listen on port 3000 by default.
+ *
+ * NOTE: This server intentionally stubs out Google and PayPal logic. Real
+ * integrations require OAuth credentials, secure storage and a proper
+ * database. Please fill in those details according to the security
+ * requirements of your deployment.
+ */
+
+const http = require('http');
+const url = require('url');
+const fs = require('fs');
+const path = require('path');
+// Note: We intentionally avoid pulling in external dependencies like uuid.
+// The helper function `generateId` defined below will produce a unique
+// identifier using crypto.randomUUID if available, or a timestamp fallback.
+
+// Root directory for persisting JSON data.
+const DATA_DIR = path.join(__dirname, 'data');
+
+// Ensure the data directory exists when the server starts.
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+/**
+ * Load JSON data from disk. If the file does not exist, return an empty
+ * array/object depending on the default parameter.
+ *
+ * @param {string} filename The name of the JSON file to load.
+ * @param {any} defaultValue The default value if the file is missing.
+ * @returns {any}
+ */
+function loadData(filename, defaultValue) {
+  const filePath = path.join(DATA_DIR, filename);
+  if (!fs.existsSync(filePath)) {
+    return defaultValue;
+  }
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error(`Error loading ${filename}:`, err);
+    return defaultValue;
+  }
+}
+
+/**
+ * Save JSON data to disk atomically.
+ *
+ * @param {string} filename The name of the JSON file to save.
+ * @param {any} data The data to serialize.
+ */
+function saveData(filename, data) {
+  const filePath = path.join(DATA_DIR, filename);
+  try {
+    fs.writeFileSync(filePath + '.tmp', JSON.stringify(data, null, 2));
+    fs.renameSync(filePath + '.tmp', filePath);
+  } catch (err) {
+    console.error(`Error saving ${filename}:`, err);
+  }
+}
+
+// In memory caches of persisted entities. These are loaded at startup and
+// written back to disk whenever changes occur. In a real application you
+// would use a database (SQL, MongoDB, etc) instead of JSON files.
+const users = loadData('users.json', []);
+const sessions = loadData('sessions.json', []);
+const orders = loadData('orders.json', []);
+
+/**
+ * Write the current in-memory data back to disk. This function should be
+ * called after any mutation to the users, sessions or orders arrays.
+ */
+function persistAll() {
+  saveData('users.json', users);
+  saveData('sessions.json', sessions);
+  saveData('orders.json', orders);
+}
+
+/**
+ * Send a JSON response with the given status code.
+ *
+ * @param {http.ServerResponse} res The response object.
+ * @param {number} status The HTTP status code.
+ * @param {any} data The JSON data to send.
+ */
+function sendJSON(res, status, data) {
+  const body = JSON.stringify(data);
+  res.writeHead(status, {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(body)
+  });
+  res.end(body);
+}
+
+/**
+ * Parse the request body as JSON. Returns a promise that resolves to the
+ * parsed object or an empty object if no body is provided.
+ *
+ * @param {http.IncomingMessage} req The incoming HTTP request.
+ * @returns {Promise<any>}
+ */
+function parseBody(req) {
+  return new Promise((resolve) => {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      if (!body) {
+        return resolve({});
+      }
+      try {
+        const parsed = JSON.parse(body);
+        resolve(parsed);
+      } catch (err) {
+        console.error('Failed to parse request body:', err);
+        resolve({});
+      }
+    });
+  });
+}
+
+/**
+ * Generate a simple unique identifier. Uses crypto.randomUUID if
+ * available; falls back to a timestamp based string if not.
+ *
+ * @returns {string}
+ */
+function generateId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  // Fallback: simple timestamp + random number.
+  return `${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 8)}`;
+}
+
+/*
+ * Route definitions
+ *
+ * We implement a small set of RESTful endpoints for users and streaming
+ * sessions. Additional endpoints for Google SSO and PayPal are stubbed
+ * out with 501 (Not Implemented) responses. See inline comments for
+ * guidance on where real integrations should be added.
+ */
+const server = http.createServer(async (req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  const pathname = parsedUrl.pathname || '';
+  const method = req.method;
+
+  // Enable CORS for development/testing. In production you should
+  // configure CORS properly or remove this entirely.
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (method === 'OPTIONS') {
+    return res.writeHead(204).end();
+  }
+
+  // Health check
+  if (pathname === '/api/status' && method === 'GET') {
+    return sendJSON(res, 200, { status: 'OK' });
+  }
+
+  // Users API
+  if (pathname === '/api/users' && method === 'POST') {
+    // Create a new user
+    const body = await parseBody(req);
+    const newUser = {
+      id: generateId(),
+      email: body.email || '',
+      displayName: body.displayName || '',
+      role: body.role || 'viewer',
+      createdAt: new Date().toISOString()
+    };
+    users.push(newUser);
+    persistAll();
+    return sendJSON(res, 201, newUser);
+  }
+  if (pathname.startsWith('/api/users/') && method === 'GET') {
+    // Get a user by id
+    const userId = pathname.split('/')[3];
+    const user = users.find(u => u.id === userId);
+    if (!user) {
+      return sendJSON(res, 404, { error: 'User not found' });
+    }
+    return sendJSON(res, 200, user);
+  }
+
+  // Sessions API
+  if (pathname === '/api/sessions' && method === 'POST') {
+    // Create a new streaming session. Expect a creatorId, title and
+    // description in the body. Additional fields can be added as
+    // required (e.g. sceneId, destinationIds, etc).
+    const body = await parseBody(req);
+    if (!body.creatorId || !body.title) {
+      return sendJSON(res, 400, { error: 'creatorId and title are required' });
+    }
+    const newSession = {
+      id: generateId(),
+      creatorId: body.creatorId,
+      title: body.title,
+      description: body.description || '',
+      status: 'offline', // offline | preparing | going_live | live | ended
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      metadata: body.metadata || {}
+    };
+    sessions.push(newSession);
+    persistAll();
+    return sendJSON(res, 201, newSession);
+  }
+  if (pathname.startsWith('/api/sessions/') && method === 'GET') {
+    // Fetch a session by id
+    const sessionId = pathname.split('/')[3];
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session) {
+      return sendJSON(res, 404, { error: 'Session not found' });
+    }
+    return sendJSON(res, 200, session);
+  }
+  if (pathname.startsWith('/api/sessions/') && method === 'PUT') {
+    // Update session status or metadata
+    const sessionId = pathname.split('/')[3];
+    const session = sessions.find(s => s.id === sessionId);
+    if (!session) {
+      return sendJSON(res, 404, { error: 'Session not found' });
+    }
+    const body = await parseBody(req);
+    if (body.status) {
+      session.status = body.status;
+    }
+    if (body.metadata) {
+      session.metadata = Object.assign({}, session.metadata, body.metadata);
+    }
+    session.updatedAt = new Date().toISOString();
+    persistAll();
+    return sendJSON(res, 200, session);
+  }
+
+  // Google SSO (stub)
+  // These routes illustrate where Google SSO logic would live. To implement
+  // Google authentication, you would need to configure OAuth client
+  // credentials and handle the callback to exchange an authorization code
+  // for user identity information. For now we return 501 Not Implemented.
+  if (pathname === '/auth/google' && method === 'GET') {
+    return sendJSON(res, 501, { error: 'Google SSO initiation not implemented' });
+  }
+  if (pathname === '/auth/google/callback' && method === 'GET') {
+    return sendJSON(res, 501, { error: 'Google SSO callback not implemented' });
+  }
+
+  // PayPal endpoints (stubs)
+  // These routes are placeholders for PayPal checkout, subscriptions,
+  // webhook handling and payout processing. Real implementations will
+  // require server‑to‑server calls to PayPal APIs using clientId and
+  // clientSecret credentials. See the PayPal developer documentation
+  // for details: https://developer.paypal.com/api/rest/.
+  if (pathname === '/paypal/checkout' && method === 'POST') {
+    return sendJSON(res, 501, { error: 'PayPal checkout not implemented' });
+  }
+  if (pathname === '/paypal/subscription' && method === 'POST') {
+    return sendJSON(res, 501, { error: 'PayPal subscription not implemented' });
+  }
+  if (pathname === '/paypal/webhook' && method === 'POST') {
+    return sendJSON(res, 501, { error: 'PayPal webhook not implemented' });
+  }
+  if (pathname === '/paypal/payout' && method === 'POST') {
+    return sendJSON(res, 501, { error: 'PayPal payout not implemented' });
+  }
+
+  // Catch all other API routes
+  if (pathname.startsWith('/api/') || pathname.startsWith('/auth/') || pathname.startsWith('/paypal/')) {
+    return sendJSON(res, 404, { error: 'Not found' });
+  }
+
+  // Static file server fallback (for testing)
+  // In a real deployment, the frontend would be served separately. Here we
+  // provide a minimal static file server so you can drop HTML files into
+  // the backend/public directory for quick testing.
+  const staticDir = path.join(__dirname, 'public');
+  const filePath = path.join(staticDir, pathname === '/' ? 'index.html' : pathname);
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+    const ext = path.extname(filePath).substring(1);
+    const mimeTypes = {
+      html: 'text/html',
+      js: 'application/javascript',
+      css: 'text/css',
+      json: 'application/json'
+    };
+    const mime = mimeTypes[ext] || 'text/plain';
+    const content = fs.readFileSync(filePath);
+    res.writeHead(200, { 'Content-Type': mime });
+    return res.end(content);
+  }
+
+  // If we reach this point, return 404 Not Found
+  sendJSON(res, 404, { error: 'Route not found' });
+});
+
+// Start listening on the configured port. In production you might read
+// the port from an environment variable or configuration file.
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  console.log(`Amalgam backend listening on http://localhost:${port}`);
+});

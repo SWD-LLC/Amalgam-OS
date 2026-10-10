@@ -11,7 +11,7 @@ This branch was opened to stage the independently developed Amalgam Platform sou
 
 The recovered Vite/React 19 Platform and the earlier Vite/React Creator OS are separate implementations within the same Amalgam project. Do not overwrite one with the other without an explicit integration and test plan.
 
-**Staging status:** The recovered Platform ZIP is not yet included in this branch. Do not treat this branch as a complete source publication or a production release until the recovered files are uploaded and verified.
+**Recovery candidate:** The October 10 recovered Platform source is staged under `platform/`. It has not passed a complete install, TypeScript check, browser QA, or media-server delivery test; this is source publication for review, not a production release.
 
 The WHIP client and session ledger in the recovery package are developmental. Browser RTP metrics are not independently verified destination playback, and a build or published stream should not be claimed without a passing test.
 

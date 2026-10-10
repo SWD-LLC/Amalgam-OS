@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amalgam | Creatorverse Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                50: '#f0f4ff',
+                100: '#e1e9ff',
+                200: '#c7d6ff',
+                300: '#a3baff',
+                400: '#C7A6FF', /* Light Purple */
+                500: '#A78BFA', /* Rich Purple */
+                600: '#FF3CF2', /* Neon Pink */
+                700: '#FF66F6', /* Softer Pink */
+                800: '#FFF2A6', /* Light Yellow / Butter */
+                900: '#252c93',
+                950: '#151856',
+              },
+              base: {
+                950: '#0B0614', /* Deep Violet-Black */
+                900: '#130A22', /* Surface */
+                850: '#1A0F2E', /* Surface Elevated */
+                800: '#21262d',
+              },
+              accent: {
+                pink: '#FF3CF2',
+                purple: '#C7A6FF',
+                butter: '#FFF2A6'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --glow-pink: 0 0 18px rgba(255,60,242,.55), 0 0 42px rgba(255,60,242,.25);
+        --glow-purple: 0 0 18px rgba(199,166,255,.45), 0 0 42px rgba(167,139,250,.20);
+        --glow-yellow: 0 0 18px rgba(255,242,166,.45), 0 0 42px rgba(255,242,166,.18);
+        --grad-accent: linear-gradient(90deg, #C7A6FF 0%, #FF3CF2 55%, #FFF2A6 110%);
+      }
+      body {
+        background: radial-gradient(1200px 600px at 20% 20%, rgba(199,166,255,.15), transparent 55%),
+                    radial-gradient(900px 500px at 80% 20%, rgba(255,60,242,.12), transparent 55%),
+                    linear-gradient(180deg, #0B0614 0%, #07030F 100%);
+        color: #F7F3FF;
+        -webkit-font-smoothing: antialiased;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.2);
+      }
+      .neon-glow-pink { box-shadow: var(--glow-pink); }
+      .neon-glow-purple { box-shadow: var(--glow-purple); }
+      .neon-glow-yellow { box-shadow: var(--glow-yellow); }
+      .neon-text-pink { color: #FF3CF2; text-shadow: 0 0 8px rgba(255,60,242,0.4); }
+      .neon-text-purple { color: #C7A6FF; text-shadow: 0 0 8px rgba(199,166,255,0.4); }
+      .neon-text-butter { color: #FFF2A6; text-shadow: 0 0 8px rgba(255,242,166,0.4); }
+      
+      .gradient-blur {
+        position: absolute;
+        filter: blur(100px);
+        opacity: 0.2;
+        z-index: -1;
+      }
+      
+      .glass-card {
+        background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,.08);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="selection:bg-brand-600/40">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
