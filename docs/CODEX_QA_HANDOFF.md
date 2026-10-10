@@ -9,8 +9,8 @@
 | Checkout | What it contains | What to do with it |
 |---|---|---|
 | `https://github.com/swd-dev00/Amalgam-OS`, `main` | Older compiled Creator OS export ZIP and static-site deployment resources, with a 13-page HTML app | Continue behavior testing; do not assume full editable React source |
-| `https://github.com/SWD-LLC/Amalgam-OS`, `main` | Original React 18/Vite app under `src/` | Examine source for an exact correspondence to each compiled-export defect before fixing |
-| `https://github.com/SWD-LLC/Amalgam-OS`, `recovery/amalgam-platform-2026-10-10` | Root Creator OS source plus a different React 19/Vite Platform under `platform/` and recovery reports | Test Platform independently; review existing draft PR #1 |
+| `https://github.com/swd-dev00/Amalgam_OS`, `main` | Original React 18/Vite app under `src/` | Examine source for an exact correspondence to each compiled-export defect before fixing |
+| `https://github.com/swd-dev00/Amalgam_OS`, `recovery/amalgam-platform-2026-10-10` | Root Creator OS source plus a different React 19/Vite Platform under `platform/` and recovery reports | Test Platform independently; review existing draft PR #1 |
 
 The user already specified: **Test the available Creator OS export**. Do not re-ask that question. The recovered Platform is an additional, separate engineering validation target.
 
@@ -81,7 +81,7 @@ The project owner wants real functional progress. Complete at least one source-m
 Start from the protected branch and do not overwrite `main`:
 
 ```bash
-git clone https://github.com/SWD-LLC/Amalgam-OS.git
+git clone https://github.com/swd-dev00/Amalgam_OS.git
 cd Amalgam-OS
 git switch recovery/amalgam-platform-2026-10-10
 cd platform
@@ -100,7 +100,7 @@ Report Platform results in `platform/qa/`, not in the older-export control matri
 
 ## 7. Integrity and author credit
 
-Project by Sierra N. Warren, Sierra Warren Developments, LLC. Preserve existing histories, copyright/license files, application features, and separate research projects. No force pushes, automatic merge of PR #1, secret files, fake metrics, or premature production status. If Codex is running in a cloud environment for `swd-dev00/Amalgam-OS`, its environment setup must be retargeted to `SWD-LLC/Amalgam-OS` for editable source work. A checkout of the protected recovery branch is needed for the Platform tests.
+Project by Sierra N. Warren, Sierra Warren Developments, LLC. Preserve existing histories, copyright/license files, application features, and separate research projects. No force pushes, automatic merge of PR #1, secret files, fake metrics, or premature production status. If Codex is running in a cloud environment for `swd-dev00/Amalgam-OS`, its environment setup must be retargeted to `swd-dev00/Amalgam_OS` for editable source work. A checkout of the protected recovery branch is needed for the Platform tests.
 
 ## 8. Final handoff, no generic progress update
 
