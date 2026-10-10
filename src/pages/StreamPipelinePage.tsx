@@ -46,8 +46,6 @@ export function StreamPipelinePage() {
         </div>
       </div>
 
-    <section className="space-y-4">
-      <h1 className="text-2xl font-bold">Stream Pipeline</h1>
       <div className="flex gap-2">
         <input className="w-full rounded-lg bg-slate-800 px-3 py-2" placeholder="New stream project" value={title} onChange={(e) => setTitle(e.target.value)} />
         <button

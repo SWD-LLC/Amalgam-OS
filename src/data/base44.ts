@@ -13,7 +13,6 @@ import type {
   StreamProject,
   TimelineSection,
 } from '../types';
-import type { CategoryEntry, Clip, GrowthEntry, RaidPartner, Script, StreamProject } from '../types';
 
 type EntityMap = {
   streamProjects: StreamProject[];
@@ -39,12 +38,6 @@ const seeds: EntityMap = {
   clips: [
     { id: 'c-1', title: 'Best social tension reveal', platform: 'TikTok', posted: true, postedAt: new Date().toISOString(), views: 12344 },
     { id: 'c-2', title: 'Curiosity loop opener', platform: 'YT Shorts', posted: false, views: 0 },
-    { id: 'sp-1', title: 'Ranked Push Night', status: 'recording', platformTargets: ['Twitch', 'YouTube'], updatedAt: new Date().toISOString() },
-    { id: 'sp-2', title: 'Collab Variety Block', status: 'editing', platformTargets: ['Kick', 'TikTok'], updatedAt: new Date().toISOString() },
-  ],
-  clips: [
-    { id: 'c-1', title: 'Insane 1v4 clutch', platform: 'TikTok', posted: true, postedAt: new Date().toISOString(), views: 12344 },
-    { id: 'c-2', title: 'Chat chooses loadout', platform: 'YT Shorts', posted: false, views: 0 },
   ],
   raidPartners: [
     { id: 'r-1', channelName: 'NovaFPS', avgCCV: 77, niche: 'Competitive FPS', lastRaidDate: '2026-04-22', status: 'active' },
@@ -156,13 +149,6 @@ function getStore(): EntityMap {
   const fallback = cloneSeeds();
   localStorage.setItem(key, JSON.stringify(fallback));
   return fallback;
-function getStore(): EntityMap {
-  const raw = localStorage.getItem(key);
-  if (!raw) {
-    localStorage.setItem(key, JSON.stringify(seeds));
-    return seeds;
-  }
-  return JSON.parse(raw) as EntityMap;
 }
 
 function setStore(next: EntityMap) {

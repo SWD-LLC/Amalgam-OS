@@ -7,7 +7,6 @@
       "DOM",
       "DOM.Iterable"
     ],
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "Bundler",
@@ -21,5 +20,4 @@
   "include": [
     "src"
   ]
-  "include": ["src"]
 }
