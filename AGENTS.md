@@ -2,7 +2,7 @@
 
 **Project author:** Sierra N. Warren  
 **Organization:** Sierra Warren Developments, LLC  
-**Canonical engineering repository:** `https://github.com/SWD-LLC/Amalgam-OS`
+**Canonical engineering repository:** `https://github.com/swd-dev00/Amalgam_OS`
 
 Read `docs/CODEX_QA_HANDOFF.md` before modifying code. Treat it as the work order for the current QA/recovery task.
 
@@ -10,8 +10,8 @@ Read `docs/CODEX_QA_HANDOFF.md` before modifying code. Treat it as the work orde
 
 There are multiple Amalgam versions. Do not confuse or overwrite them.
 
-- `SWD-LLC/Amalgam-OS` at `main`: earlier editable Creator OS React/Vite source under `src/`.
-- `SWD-LLC/Amalgam-OS` at `recovery/amalgam-platform-2026-10-10`: all of the above plus the separately recovered Vite/React Platform in `platform/`; see draft PR #1.
+- `swd-dev00/Amalgam_OS` at `main`: earlier editable Creator OS React/Vite source under `src/`.
+- `swd-dev00/Amalgam_OS` at `recovery/amalgam-platform-2026-10-10`: all of the above plus the separately recovered Vite/React Platform in `platform/`; see draft PR #1.
 - `swd-dev00/Amalgam-OS`: older compiled static Creator OS site, including 13 exported HTML pages and an archived JS bundle. Reference and QA target, **not** a complete editable source tree for the Platform.
 
 Never assume the earlier `src/` application is the source used to build the exported static site without proving the match. Never treat the Platform app as an automatic replacement of either.
