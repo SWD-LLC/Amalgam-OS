@@ -1,0 +1,13 @@
+{
+  "google": {
+    "clientId": "YOUR_GOOGLE_CLIENT_ID_HERE",
+    "clientSecret": "YOUR_GOOGLE_CLIENT_SECRET_HERE",
+    "redirectUri": "http://localhost:3000/auth/google/callback"
+  },
+  "paypal": {
+    "clientId": "YOUR_PAYPAL_CLIENT_ID_HERE",
+    "clientSecret": "YOUR_PAYPAL_CLIENT_SECRET_HERE",
+    "environment": "sandbox", // or "live"
+    "webhookId": "YOUR_PAYPAL_WEBHOOK_ID_HERE"
+  }
+}

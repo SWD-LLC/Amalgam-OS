@@ -1,0 +1,8 @@
+{
+  "name": "Amalgam",
+  "description": "Creatorverse: A Google-grade intelligent live streaming platform where creators use an AI co-host for real-time vision analysis, sound synthesis, and stream orchestration.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

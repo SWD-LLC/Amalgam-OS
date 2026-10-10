@@ -1,0 +1,182 @@
+--- GoLive.current.jsx
++++ GoLive.patched.jsx
+@@ -74,16 +74,23 @@
+     }
+   }, []);
+ 
+-  // Live timer
++  // Session timer
+   useEffect(() => {
+-    if (session.status === SESSION_STATUS.LIVE) {
++    const timerShouldRun =
++      isLive ||
++      isRehearsal ||
++      isGoingLive ||
++      device.isRecording;
++
++    if (timerShouldRun) {
+       timerRef.current = setInterval(() => setLiveTimer(t => t + 1), 1000);
+     } else {
+       clearInterval(timerRef.current);
+-      if (session.status !== SESSION_STATUS.ENDED) setLiveTimer(0);
++      if (!isEnded) setLiveTimer(0);
+     }
++
+     return () => clearInterval(timerRef.current);
+-  }, [session.status]);
++  }, [isLive, isRehearsal, isGoingLive, isEnded, device.isRecording]);
+ 
+   // Auto-save recovery state during live
+   useEffect(() => {
+@@ -108,7 +115,21 @@
+   const blockReason = getBlockReason(checklist);
+   const activeScene = SCENE_PRESETS.find(s => s.id === session.activeSceneId);
+   const statusDisplay = STATUS_DISPLAY[session.status] || STATUS_DISPLAY[SESSION_STATUS.OFFLINE];
+-  const isLive = session.status === SESSION_STATUS.LIVE || session.status === SESSION_STATUS.LIVE_WARNING;
++  const isLive =
++    session.status === SESSION_STATUS.LIVE ||
++    session.status === SESSION_STATUS.LIVE_WARNING ||
++    session.status === SESSION_STATUS.RECONNECTING;
++
++  const isRehearsal = session.status === SESSION_STATUS.REHEARSAL;
++  const isGoingLive = session.status === SESSION_STATUS.GOING_LIVE;
++  const isEnded = session.status === SESSION_STATUS.ENDED;
++  const isRecovery =
++    session.status === SESSION_STATUS.FAILED ||
++    session.status === SESSION_STATUS.RECOVERY;
++
++  const cameraConnected = device.cameraStatus === "connected";
++  const micConnected = device.micStatus === "connected";
++  const hasAnyDevice = cameraConnected || micConnected;
+ 
+   const formatTimer = (s) => {
+     const h = Math.floor(s / 3600);
+@@ -138,10 +159,35 @@
+   };
+ 
+   const startRehearsal = () => updateSession({ status: SESSION_STATUS.REHEARSAL, startedAt: new Date().toISOString() });
++
++  const stopRehearsal = () => {
++    if (device.isRecording) device.stopLocalRecording();
++
++    updateSession({
++      status: SESSION_STATUS.OFFLINE,
++      startedAt: null,
++      recordLocally: false,
++    });
++
++    setLiveTimer(0);
++  };
++
+   const startLocalOnly = () => {
+-    updateSession({ status: SESSION_STATUS.LIVE, recordLocally: true, startedAt: new Date().toISOString() });
++    if (!hasAnyDevice) return;
++
++    updateSession({
++      status: SESSION_STATUS.REHEARSAL,
++      recordLocally: true,
++      startedAt: new Date().toISOString(),
++    });
++
+     device.startLocalRecording();
+-    saveRecoveryState({ ...session, status: SESSION_STATUS.LIVE });
++
++    saveRecoveryState({
++      ...session,
++      status: SESSION_STATUS.REHEARSAL,
++      recordLocally: true,
++    });
+   };
+ 
+   const endStream = () => {
+@@ -283,6 +329,9 @@
+               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                 <LiveControls
+                   session={session}
++                  sessionStatus={session.status}
++                  cameraStatus={device.cameraStatus}
++                  micStatus={device.micStatus}
+                   isMuted={device.isMuted}
+                   isCameraHidden={device.isCameraHidden}
+                   isRecording={device.isRecording}
+@@ -342,11 +391,22 @@
+                   <p className="text-[11px] text-red-400 text-center">⚠️ {blockReason}</p>
+                 )}
+                 <div className="grid grid-cols-2 gap-2">
+-                  <Button variant="outline" size="sm" className="text-xs" onClick={startRehearsal}>
++                  <Button
++                    variant="outline"
++                    size="sm"
++                    className="text-xs"
++                    onClick={startRehearsal}
++                    disabled={isGoingLive}
++                  >
+                     🎭 Rehearsal Mode
+                   </Button>
+-                  <Button variant="outline" size="sm" className="text-xs" onClick={startLocalOnly}
+-                    disabled={device.cameraStatus !== 'connected' && device.micStatus !== 'connected'}>
++                  <Button
++                    variant="outline"
++                    size="sm"
++                    className="text-xs"
++                    onClick={startLocalOnly}
++                    disabled={!hasAnyDevice || isGoingLive}
++                  >
+                     ⏺ Record Locally
+                   </Button>
+                 </div>
+@@ -356,20 +416,49 @@
+               </div>
+             )}
+ 
+-            {/* End button (live) */}
+-            {(isLive || session.status === SESSION_STATUS.REHEARSAL) && (
++            {/* Rehearsal / local recording controls */}
++            {isRehearsal && (
++              <div className="space-y-2">
++                <div className="flex items-center gap-2 p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
++                  <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
++                  <span className="text-sm font-medium text-yellow-400">
++                    {device.isRecording ? "Recording Locally" : "Rehearsal Active"} · {formatTimer(liveTimer)}
++                  </span>
++                </div>
++
++                <Button variant="outline" className="w-full gap-2 h-10" onClick={stopRehearsal}>
++                  <Square className="w-4 h-4" /> Stop Rehearsal
++                </Button>
++
++                <Button
++                  variant="outline"
++                  className="w-full gap-2 h-9 text-yellow-400 border-yellow-400/30 hover:bg-yellow-400/10"
++                  onClick={emergencySafe}
++                >
++                  <Shield className="w-4 h-4" /> Emergency Safe Mode
++                </Button>
++              </div>
++            )}
++
++            {/* End button (live only) */}
++            {isLive && (
+               <div className="space-y-2">
+                 <div className="flex items-center gap-2 p-2 rounded-lg bg-red-500/10 border border-red-500/20">
+                   <span className="w-2 h-2 rounded-full bg-red-500 live-dot" />
+                   <span className="text-sm font-medium text-red-400">
+-                    {session.status === SESSION_STATUS.REHEARSAL ? 'Rehearsal Active' : 'Live Session'} · {formatTimer(liveTimer)}
++                    Live Session · {formatTimer(liveTimer)}
+                   </span>
+                 </div>
++
+                 <Button variant="destructive" className="w-full gap-2 h-10" onClick={() => setShowEndConfirm(true)}>
+                   <Square className="w-4 h-4" /> End Live Stream
+                 </Button>
+-                <Button variant="outline" className="w-full gap-2 h-9 text-yellow-400 border-yellow-400/30 hover:bg-yellow-400/10"
+-                  onClick={emergencySafe}>
++
++                <Button
++                  variant="outline"
++                  className="w-full gap-2 h-9 text-yellow-400 border-yellow-400/30 hover:bg-yellow-400/10"
++                  onClick={emergencySafe}
++                >
+                   <Shield className="w-4 h-4" /> Emergency Safe Mode
+                 </Button>
+               </div>

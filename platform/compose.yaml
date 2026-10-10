@@ -1,0 +1,14 @@
+services:
+  amalgam-studio:
+    build: .
+    environment:
+      AMALGAM_STUDIO_TOKEN: ${AMALGAM_STUDIO_TOKEN:?Set a random operator token first}
+      HOST: 0.0.0.0
+      PORT: '8787'
+    ports:
+      - '127.0.0.1:8787:8787'
+    volumes:
+      - amalgam_data:/app/backend/data
+    restart: unless-stopped
+volumes:
+  amalgam_data:
