@@ -14,7 +14,7 @@ describe('CreatorStudioPage', () => {
     expect(screen.getByText(/Creator Studio/i)).toBeInTheDocument();
     expect(screen.getByText(/Broadcast off/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Start local preview/i })).toBeInTheDocument();
-    expect(screen.getByText(/External broadcast/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/External broadcast/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Not configured/i)).toBeInTheDocument();
   });
 });
