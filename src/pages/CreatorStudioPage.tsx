@@ -70,6 +70,11 @@ export function CreatorStudioPage() {
     return () => {
       recorderRef.current?.state === 'recording' && recorderRef.current.stop();
       streamRef.current?.getTracks().forEach((track) => track.stop());
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
       if (recordingUrl) URL.revokeObjectURL(recordingUrl);
     };
   }, [recordingUrl]);
@@ -143,15 +148,21 @@ export function CreatorStudioPage() {
     });
   }
 
-  function chooseMimeType() {
+  function chooseMimeType(stream: MediaStream) {
     if (!recorderSupported) return '';
 
-    return [
-      'video/webm;codecs=vp9,opus',
-      'video/webm;codecs=vp8,opus',
-      'video/webm',
-      'audio/webm',
-    ].find((type) => MediaRecorder.isTypeSupported(type)) ?? '';
+    const candidates = stream.getVideoTracks().length > 0
+      ? [
+          'video/webm;codecs=vp9,opus',
+          'video/webm;codecs=vp8,opus',
+          'video/webm',
+        ]
+      : [
+          'audio/webm;codecs=opus',
+          'audio/webm',
+        ];
+
+    return candidates.find((type) => MediaRecorder.isTypeSupported(type)) ?? '';
   }
 
   async function startRecording() {
@@ -170,7 +181,7 @@ export function CreatorStudioPage() {
       }
 
       chunksRef.current = [];
-      const mimeType = chooseMimeType();
+      const mimeType = chooseMimeType(stream);
       const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
       recorderRef.current = recorder;
 
