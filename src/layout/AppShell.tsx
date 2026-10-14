@@ -1,8 +1,9 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ParticleBackground } from '../components/ParticleBackground';
 
 const nav = [
   ['/', 'Dashboard'],
+  ['/studio', 'Creator Studio'],
   ['/stream-pipeline', 'Stream Pipeline'],
   ['/clip-pipeline', 'Clip Pipeline'],
   ['/growth-system', 'Growth System'],
@@ -14,6 +15,17 @@ const nav = [
 ];
 
 export function AppShell() {
+  const location = useLocation();
+  const studioMode = location.pathname === '/studio';
+
+  if (studioMode) {
+    return (
+      <div className="min-h-screen bg-[#080b12] text-slate-100">
+        <Outlet />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen text-slate-100">
       <ParticleBackground />
