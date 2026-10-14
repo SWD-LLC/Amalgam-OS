@@ -68,7 +68,8 @@ export function CreatorStudioPage() {
 
   useEffect(() => {
     return () => {
-      recorderRef.current?.state === 'recording' && recorderRef.current.stop();
+      const recorder = recorderRef.current;
+      if (recorder?.state === 'recording') recorder.stop();
       streamRef.current?.getTracks().forEach((track) => track.stop());
     };
   }, []);
