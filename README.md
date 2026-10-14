@@ -15,7 +15,8 @@ All core intellectual property, infrastructure design, and system architecture a
 
 This repository now includes a Creator-first dashboard prototype implementing the core flows:
 
-- Dashboard command center with live status indicators, quick metrics, activity feed, pre-flight checklist, and Go Live action.
+- Dashboard command center with explicit connection/readiness states and a direct entry into Creator Studio.
+- Stage-first Creator Studio with local camera/microphone preview, browser recording, downloadable local media, lower-third controls, solo/split layouts, and operational side panels inspired by modern production studios without copying their branding.
 - Stream Pipeline lifecycle stages (`Idea → Recording → Editing → Published`) and platform targets (Twitch, YouTube, Kick, TikTok).
 - Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
 - Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
@@ -26,6 +27,10 @@ This repository now includes a Creator-first dashboard prototype implementing th
 - AI Bestie panel with tone selector (`Hype`, `Sassy`, `Chill`, `Dramatic`, `Pro`) and saved scripts library.
 - Architecture status page with Shadow Mode / Safe Mode / Modular Engine health and pre-flight checklist.
 - Settings for Starter vs Pro mode, Safe Mode Live, Shadow Mode, and target platform devices.
+
+### Integration boundary
+
+Creator Studio currently verifies local browser capture and recording only. Platform chat, OAuth, external broadcast destinations, ingest confirmation, and remote guest transport remain unavailable until real services are connected. The interface does not fabricate live audience, bitrate, upload, or connection states.
 
 ### Data persistence
 
